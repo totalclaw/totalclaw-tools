@@ -1,0 +1,24 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+tested_with: ">=0.63.72"
+name: web-fetch
+display_name: 网页抓取
+version: 0.1.0
+description: 抓取网页并抽取正文纯文本(标准库 HTMLParser,零凭据零重依赖);非 HTML 内容只返回元信息
+author: totalclaw
+kind: function
+tools:
+  - name: web_fetch
+    description: 抓取指定 URL 的网页,返回标题与正文纯文本(已去除脚本/样式,超长自动截断)。适用于阅读文章、查看页面内容;不执行 JavaScript。
+    parameters:
+      type: object
+      properties:
+        url:
+          type: string
+          description: 目标网页 URL(仅 http/https)
+        max_chars:
+          type: integer
+          description: 正文最大返回字符数,默认 8000,上限 16000
+      required: [url]
+requires_env: []
+optional_env: []

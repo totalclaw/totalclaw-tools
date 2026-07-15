@@ -1,0 +1,24 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+tested_with: ">=0.63.72"   # 实测过的 agent 版本下限(PEP 440),随 agent 契约版本联动更新
+name: web-CHANGEME         # 工具包名:与目录名一致,带品类前缀(web-/comm-/data-/...)
+display_name: CHANGEME
+version: 0.0.1
+description: "CHANGEME:一句话说清能力与边界"
+author: totalclaw
+kind: function
+tools:                     # ★ 模型可见 schema 的单一事实源(SPEC §2)——代码只绑 handler
+  - name: changeme_action  # callable name:snake_case,全仓唯一,发布后冻结
+    description: CHANGEME:一句话让模型知道何时调用本工具
+    parameters:
+      type: object
+      properties:
+        example_param:
+          type: string
+          description: CHANGEME
+      required: [example_param]
+requires_env:              # 需要凭据时填富对象(qiye-app 设置向导据此渲染表单);无则留空列表
+  - name: CHANGEME_API_KEY
+    description: CHANGEME
+    prompt: CHANGEME
+optional_env: []

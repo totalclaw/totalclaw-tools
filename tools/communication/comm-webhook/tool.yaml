@@ -1,0 +1,27 @@
+manifest_version: 1
+requires_protocol_version: ">=1"
+tested_with: ">=0.63.72"
+name: comm-webhook
+display_name: 群机器人通知
+version: 0.1.0
+description: 通过用户配置的群机器人 webhook 发送文本通知,自动适配企业微信/钉钉/飞书消息格式
+author: totalclaw
+kind: function
+tools:
+  - name: webhook_send
+    description: 向已配置的群机器人(企业微信/钉钉/飞书)发送一条文本通知。适用于任务完成提醒、告警推送等需要通知人的场景。
+    parameters:
+      type: object
+      properties:
+        text:
+          type: string
+          description: 要发送的通知文本(纯文本)
+        at_all:
+          type: boolean
+          description: 是否 @所有人(仅企业微信/钉钉支持),默认 false
+      required: [text]
+requires_env:
+  - name: TOTALCLAW_TOOL_WEBHOOK_URL
+    description: 群机器人 webhook 地址(企业微信/钉钉/飞书均可,在群设置里添加机器人后获取)
+    prompt: 请输入群机器人 webhook 地址(以 https:// 开头)
+optional_env: []

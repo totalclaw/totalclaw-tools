@@ -1,0 +1,5 @@
+#!/bin/sh
+# totalclaw-tools pre-push 机检
+# 启用(一次性):git config core.hooksPath scripts/hooks
+cd "$(git rev-parse --show-toplevel)" || exit 1
+exec python3 scripts/ci_check.py

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "registry": "totalclaw-tools",
+  "id_scheme": "<registry>/<category>/<name>",
+  "source": "https://gitee.com/jlzdyx/totalclaw-tools.git",
+  "tools": [
+    {
+      "name": "comm-webhook",
+      "id": "totalclaw-tools/communication/comm-webhook",
+      "display_name": "群机器人通知",
+      "description": "通过用户配置的群机器人 webhook 发送文本通知,自动适配企业微信/钉钉/飞书消息格式",
+      "version": "0.1.0",
+      "author": "totalclaw",
+      "verified": true,
+      "tested_with": ">=0.63.72",
+      "category": "communication",
+      "path": "tools/communication/comm-webhook",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-tools/raw/master/tools/communication/comm-webhook",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-tools.git",
+        "subdir": "tools/communication/comm-webhook"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "f9e967334f1e00a926a72fba50889edb8f5ec745757858a890f4c154ca4aac86",
+          "size": 1051
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "09fad667f84bb715af51678a898354ffaf8191fff1c4031346252719518cf4d5",
+          "size": 208
+        },
+        {
+          "path": "handler.py",
+          "sha256": "932ff7af0bdb0e70fc60f98caf46a596fdfcaad267275e0f723d751ac331a60f",
+          "size": 3584
+        },
+        {
+          "path": "tool.yaml",
+          "sha256": "769578195bfde47a3e7851d0c7623c67e7a75bc9783c11e69632f8ef96370530",
+          "size": 1058
+        }
+      ],
+      "bundle_sha256": "257a704f6478d8f5c8a6a0cff9cf09f37bfaf3216a9f2e147bf082d4a469d8c1",
+      "kind": "function",
+      "provides": [
+        {
+          "name": "webhook_send",
+          "description": "向已配置的群机器人(企业微信/钉钉/飞书)发送一条文本通知。适用于任务完成提醒、告警推送等需要通知人的场景。",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "要发送的通知文本(纯文本)"
+              },
+              "at_all": {
+                "type": "boolean",
+                "description": "是否 @所有人(仅企业微信/钉钉支持),默认 false"
+              }
+            },
+            "required": [
+              "text"
+            ]
+          }
+        }
+      ],
+      "requires_env": [
+        {
+          "name": "TOTALCLAW_TOOL_WEBHOOK_URL",
+          "description": "群机器人 webhook 地址(企业微信/钉钉/飞书均可,在群设置里添加机器人后获取)",
+          "prompt": "请输入群机器人 webhook 地址(以 https:// 开头)"
+        }
+      ]
+    },
+    {
+      "name": "web-fetch",
+      "id": "totalclaw-tools/web/web-fetch",
+      "display_name": "网页抓取",
+      "description": "抓取网页并抽取正文纯文本(标准库 HTMLParser,零凭据零重依赖);非 HTML 内容只返回元信息",
+      "version": "0.1.0",
+      "author": "totalclaw",
+      "verified": true,
+      "tested_with": ">=0.63.72",
+      "category": "web",
+      "path": "tools/web/web-fetch",
+      "raw_base": "https://gitee.com/jlzdyx/totalclaw-tools/raw/master/tools/web/web-fetch",
+      "git_sparse": {
+        "repo": "https://gitee.com/jlzdyx/totalclaw-tools.git",
+        "subdir": "tools/web/web-fetch"
+      },
+      "files": [
+        {
+          "path": "README.md",
+          "sha256": "b5124f66f9cc91b44b5f5a7b107cb8200f4ed03ee054635eef93b9230e2f91a8",
+          "size": 697
+        },
+        {
+          "path": "__init__.py",
+          "sha256": "6435eb52524650974a028b74a74d1508ed39ef960f1e0a39bcd813416bbee81c",
+          "size": 190
+        },
+        {
+          "path": "handler.py",
+          "sha256": "ca69b092e27ad9cb7c12c4f8d66950704206a1ecc621a85216f652d2bf649172",
+          "size": 4202
+        },
+        {
+          "path": "tool.yaml",
+          "sha256": "5e335e917a27c87f349f9fca5f8f779729cc781c3244c22f15e7c12bde5febb1",
+          "size": 831
+        }
+      ],
+      "bundle_sha256": "966519597e853a09352230b73663713802ee488bebe19cc3bd13e894a3a51baf",
+      "kind": "function",
+      "provides": [
+        {
+          "name": "web_fetch",
+          "description": "抓取指定 URL 的网页,返回标题与正文纯文本(已去除脚本/样式,超长自动截断)。适用于阅读文章、查看页面内容;不执行 JavaScript。",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "目标网页 URL(仅 http/https)"
+              },
+              "max_chars": {
+                "type": "integer",
+                "description": "正文最大返回字符数,默认 8000,上限 16000"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          }
+        }
+      ],
+      "requires_env": []
+    }
+  ]
+}
